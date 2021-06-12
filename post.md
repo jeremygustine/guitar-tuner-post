@@ -19,6 +19,9 @@ Perhaps the most basic algorithm that can be considered for pitch detection is c
 
 Here is a picture of a nice, clean sine wave. With a clean signal we can easily calculate the frequency of the signal. "The frequency of a sine wave is the number of complete cycles that happen every second".  
 
+Frequency is equal to the number of cycles divided by the time (https://www.softschools.com/formulas/physics/frequency_formula/3/#:~:text=Frequency%20is%20the%20number%20of%20cycles%20in%20a%20unit%20of%20time.&text=Frequency%20is%20equal%20to%201,is%20one%20cycle%20per%20second.)
+
+
 Here is a naive implementation of a zero-crossing algorithm in Javascript.
 
 ```
@@ -71,7 +74,21 @@ https://blogs.arubanetworks.com/industries/frequency-cycle-wavelength-amplitude-
 //An oscillation, or cycle, of this alternating current is defined as a single change from up to down to up, or as a change from positive, to negative to positive.
 
 
-### FFT
+### Fast Fourier Transform
+
+What is a Fast Fourier Transform? According to Wikipedia:
+
+> A fast Fourier transform (FFT) is an algorithm that computes the discrete Fourier transform (DFT) of a sequence, or its inverse (IDFT). Fourier analysis converts > a signal from its original domain (often time or space) to a representation in the frequency domain and vice versa. The DFT is obtained by decomposing a sequence > of values into components of different frequencies.
+
+Ok...cool. What does that mean? Luckily we don't need to understand the advanced math (that is beyond my comprehension) behind the FFT to be able to utilize the results. The FFT is a popular tool in audio and acoustic measurement because it gives us a way to look at various frequency components of a signal.  
+
+//TODO look at picture of wave vs spectrogram as an example.
+
+//Talk about frequency bins
+
+
+
+
 
 How does it work?
 
