@@ -4,55 +4,71 @@ I recently received some time to work on a passion project of mine.  As a guitar
 
 Before diving into pitch detection, we need to understand some basics about the guitar.
 
-// TODO: talk about frequencies of six strings, standard tuning, no non-standard tuning - maybe even harmonics?
+// TODO: talk about frequencies of six strings, standard tuning, no non-standard tuning - maybe even harmonics? maybe clean vs dirty signals?
+// TODO: talk about sine waves? frequency vs amplitude, etc? time domain vs frequency domain?
 
-
-### Guitar basics
-Talk about frequencies
-Talk about harmonics
+//TODO pitch is the frequency
 
 ### Zero crossing
 
-Perhaps the most basic algorithm that can be considered for detecting the frequency of an audio signal is commonly called a "zero crossing" method.
+//TODO good for getting our feet wet
+
+Perhaps the most basic algorithm that can be considered for pitch detection is commonly called the "zero crossing" method.  As the name implies, this technique works by analyzing an audio signal in the time domain and counting the number of times the amplitude of the wave changes from a positive to a negative value.
 
 //TODO show picture of clean signal
-//TODO show picture of realistic signal
 
+Here is a picture of a nice, clean sine wave. With a clean signal we can easily calculate the frequency of the signal. "The frequency of a sine wave is the number of complete cycles that happen every second".  
 
-# https://www.mathopenref.com/trigsinewaves.html#:~:text=The%20frequency%20of%20a%20sine,about%20one%20cycle%20per%20second.&text=One%20Hertz%20(1Hz)%20is%20equal%20to%20one%20cycle%20per%20second
-The frequency of a sine wave is the number of complete cycles that happen every second.
+Here is a naive implementation of a zero-crossing algorithm in Javascript.
 
-An extremely naive version of the code is shown below:
 ```
-function calculateNumCycles (samples) {
+function getNumZeroCrossings (samples) {
   var numZeroCrossings = 0
-  var numCycles = 0
   for (var i = 1; i < samples.length; i++) {
-    if (samples[i] * samples[i - 1] < 0) { numZeroCrossings++ }
-    if (numZeroCrossings === 3) {
-      numCycles++
-      numZeroCrossings = 1
+    if (samples[i] * samples[i - 1] < 0) {
+      numZeroCrossings++
     }
   }
-  return numCycles
+  return numZeroCrossings
 }
 
-function calculateFrequencyInHz (signalDurationSeconds, numCycles) {
+function getNumCycles (numZeroCrossings) {
+  return Math.floor((numZeroCrossings - 1) / 2)
+}
+
+function calculateFrequency (signalDurationSeconds, numCycles) {
   return numCycles / signalDurationSeconds
 }
 
 function start () {
   var signalDurationSeconds = 1
-  var arr = [6, 2, -2, -6, -2, 2, 6, 2, -2, -6, -2, 2, 6, 2, -2]
-  var numCycles = calculateNumCycles(arr)
-  var freq = calculateFrequencyInHz(1, numCycles)
-  console.log(freq) // out puts "2"
+  var arr = [6, 2, -2, -6, -2, 2, 6, 2, -2, -6, -2, 2, 6, 2, -2] //this should be 2 hz
+  var numZeroCrossings = getNumZeroCrossings(arr)
+  var numCycles = getNumCycles(numZeroCrossings)
+  console.log(numCycles)
+  var freq = calculateFrequency(1, numCycles)
+  console.log(freq + " Hz")
 }
+
 ```
 
-The zero crossing algorithm is great for clean signals.  Unfortunately clean signals are difficult to achieve, especially with a microphone.
+The zero crossing method of pitch detection is computationally inexpensive and easy to understand.  It works very well for clean audio signals.  Unfortunately clean audio signals are hard to come by while building a guitar tuner, especially when receiving input from a microphone.
 
+//TODO show picture of realistic signal
 
+Upsides:
+- computationally inexpensive
+- great for clear signals
+
+Downsides:
+- vulnerable to noise in signal
+- singals are rarely clean
+
+//Sources https://www.mathopenref.com/trigsinewaves.html#:~:text=The%20frequency%20of%20a%20sine,about%20one%20cycle%20per%20second.&text=One%20Hertz%20(1Hz)%20is%20equal%20to%20one%20cycle%20per%20second
+The frequency of a sine wave is the number of complete cycles that happen every second.
+
+https://blogs.arubanetworks.com/industries/frequency-cycle-wavelength-amplitude-and-phase/#:~:text=%22An%20oscillation%2C%20or%20cycle%2C,to%20negative%20to%20positive.%22%20%2D
+//An oscillation, or cycle, of this alternating current is defined as a single change from up to down to up, or as a change from positive, to negative to positive.
 
 
 ### FFT
