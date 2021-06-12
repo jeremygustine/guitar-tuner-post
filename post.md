@@ -1,11 +1,11 @@
-- zero crossing
-- FFT
-- auto correlation
+I recently received some time to work on a passion project of mine.  As a guitar player (perhaps that is a generous description) and a software developer, I have always been interested in attempting to develop a guitar tuner myself.  My goal is to create a simple guitar tuner that works by analyzing a live audio signal via microphone - perfect for a laptop/desktop computer or mobile phone.  This problem touches on numerous different subjects, from music theory, to DSP (digital signal processing), to digital art (a guitar tuner needs to be able to provide visual feedback).  At the heart of any guitar tuner is some sort of pitch detection algorithm.  This post will focus on exploring 3 of those algorithms - zero-crossing, Fast Fourier Transform, and autocorrelation.
 
-### Goal
+### Guitar Basics
 
-Make a real-time guiter tuner via microphone
-Rely on pitch-detection algorithms
+Before diving into pitch detection, we need to understand some basics about the guitar.
+
+// TODO: talk about frequencies of six strings, standard tuning, no non-standard tuning - maybe even harmonics?
+
 
 ### Guitar basics
 Talk about frequencies
