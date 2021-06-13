@@ -117,9 +117,14 @@ Downsides:
 
 ### Autocorrelation
 
+![autocorrelation](autocorrelation.gif)
+![autocorrelation with normalization](autocorrelation_normalize.gif)
+
 - equation
 - code
 - graphs
+- can mention what cross correlation is
+- we are trying to measure the similarity between a wave and a time-shifted version of itself
 
 ### Better options
 
