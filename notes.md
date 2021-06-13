@@ -1,0 +1,1 @@
+# r_{xx}(l)=\frac{\sum_{n=0}^{N-l-1}x(n)*x(n+l)}{\sum_{n=0}^{N-1}x(n)^2}
