@@ -80,7 +80,30 @@ What is a Fast Fourier Transform? According to Wikipedia:
 
 > A fast Fourier transform (FFT) is an algorithm that computes the discrete Fourier transform (DFT) of a sequence, or its inverse (IDFT). Fourier analysis converts > a signal from its original domain (often time or space) to a representation in the frequency domain and vice versa. The DFT is obtained by decomposing a sequence > of values into components of different frequencies.
 
-Ok...cool. What does that mean? Luckily we don't need to understand the advanced math (that is beyond my comprehension) behind the FFT to be able to utilize the results. The FFT is a popular tool in audio and acoustic measurement because it gives us a way to look at various frequency components of a signal.  
+Ok...cool. What does that mean? Real-world audio signals are complex and contain a variety of frequency information. For our purposes, the FFT will convert the signal into an array of numbers that we can use to figure out which frequencies are the most prominent in the signal.  Let's take a look at a few pictures to make this more concrete.
+
+//show picture of FFT plot
+
+Based on this (time-domain) sound wave, how can we determine the frequency of the signal.  Well, there isn't a single frequency.  By passing this signal through an FFT, however, we can see that there is a single frequency that is significantly more prominent than the rest.  This is a powerful technique that is frequently used in audio analysis.  So, we should be able to pass audio signal of a guitar string being plucked through an FFT to figure out the frequency, right?  Well...kinda.
+
+//show picture of FFT of a high E guitar string being plucked
+
+Well this is interesting.  When plucking a guitar's high E string, we get numerous spikes in our plot. These spikes are called harmonics (add notes about octaves as well).  
+
+This graph shows one of the problems with using an FFT for pitch detection. When analyzing the audio of any music instrument, we will always receive a series of spikes as shown above. These various spikes are called harmonics (or overtones, or actaves) of the fundamental frequency.  The fundamental frequency is the first spike in the graph.  
+
+Problematically, on a guitar, the first spike may not even be the largest one.
+
+We can, luckily, look at the distance between spikes to decently estimate the fundamental frequency.
+We can also leverage the fact that these spikes are multiples of the fundamental frequency to estimate the frequency.
+This problem of the FFT may not be a huge problem if we don't care which octave we are playing, but only which note.
+
+// the remaining components are overtones and are multiples of the fundamental's frequency. It is the relative mixture of fundamental and overtones that determines //timbre, or the character of an instrument
+
+
+
+Conveniently, we don't need to understand the advanced math behind the FFT to be able to use it. Besides, we have enough work on our plate figuring out how to interpret the results for our purposes.
+
 
 //TODO look at picture of wave vs spectrogram as an example.
 
@@ -120,6 +143,8 @@ Downsides:
 ![autocorrelation](autocorrelation.gif)
 ![autocorrelation with normalization](autocorrelation_normalize.gif)
 
+We want to compare the signal to a time-shifted version of itself.  
+
 - equation
 - code
 - graphs
@@ -131,3 +156,8 @@ Downsides:
 - combination of the above
 - That one Greek algorithm
   Still need visual feedback - will investigate canvas element later
+  
+  
+  
+  https://ccrma.stanford.edu/~pdelac/154/m154paper.htm
+  continuous vs discrete https://www.allaboutcircuits.com/technical-articles/understanding-correlation/
