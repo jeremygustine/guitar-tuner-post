@@ -107,7 +107,7 @@ Another problem with the FFT is that the resolution of the results is inversely 
 Conveniently, we don't need to understand the advanced math behind the FFT to be able to use it. Besides, we have enough work on our plate figuring out how to interpret the results for our purposes.
 
 
-
+- There are a lot of heuristics that can be used, with varying degrees of success.  Overall, this is not the best method.
 
 
 
