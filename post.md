@@ -142,6 +142,8 @@ Downsides:
 
 https://jeremygustine.github.io/js-pitch-detection-autocorrelation/
 
+Autocorrelation helps us look for the presence of periodicity in the signal.
+
 
 ![autocorrelation](autocorrelation.gif)
 ![autocorrelation with normalization](autocorrelation_normalize.gif)
