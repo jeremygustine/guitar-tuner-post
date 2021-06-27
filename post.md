@@ -82,7 +82,10 @@ What is a Fast Fourier Transform? According to Wikipedia:
 
 Ok...cool. What does that mean? Real-world audio signals are complex and contain a variety of frequency information. For our purposes, the FFT will convert the signal into an array of numbers that we can use to figure out which frequencies are the most prominent in the signal.  Let's take a look at a few pictures to make this more concrete.
 
-//show picture of FFT plot vs sound wave
+![440 Hz Sine Wave](./images/440_clean_sine.png)
+![440 Hz Sine Wave](./images/440_clean_fft.png)
+
+// TODO describe the clean vs fft images above
 
 Based on this (time-domain) sound wave, how can we determine the frequency of the signal.  Well, there isn't a single frequency.  By passing this signal through an FFT, however, we can see that there is a single frequency that is significantly more prominent than the rest.  This is a powerful technique that is frequently used in audio analysis.  So, we should be able to pass audio signal of a guitar string being plucked through an FFT to figure out the frequency, right?  Well...kinda.
 
