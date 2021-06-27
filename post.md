@@ -90,7 +90,26 @@ We see two images above; a time-domain graph of a clean 440 Hz sine wave, and a 
 ![FFT example](./images/fft_example.png)
 //https://learn.adafruit.com/fft-fun-with-fourier-transforms?view=all
 
-Let's say that this image above shows the time-domain wave of a whistle recorded through a microphone an the Fast Fourier Transoform of that wave.  The time-domain wave is not nearly as clean as the previous example.  How can we then detect the pitch of the signal?  Well, there isn't a single frequency present in the wave.  By passing this signal through an FFT, however, we can see that there is a particular frequency that is significantly more prominent than the rest.  The peak in FFT shows us what the pitch of the whistle is.  This is a powerful technique that is frequently used in audio analysis.  So, we should be able to pass audio signal of a guitar string being plucked through an FFT to figure out the frequency, right?  Well...kinda.
+Let's say that this image above shows the time-domain wave of a whistle recorded through a microphone an the Fast Fourier Transoform of that wave.  The time-domain wave is not nearly as clean as the previous example.  How can we then detect the pitch of the signal?  Well, there isn't a single frequency present in the wave.  By passing this signal through an FFT, however, we can see that there is a particular frequency that is significantly more prominent than the rest.  The peak in FFT shows us what the pitch of the whistle is.  This is a powerful technique that is frequently used in audio analysis.  How do we interpret the data received from an FFT operation?
+
+After passing a signal through an FFT operation, you will receive back an array of numbers.  Each index of the array is called a "bin".  You can think of each "bin" as a bucket for a range of frequencies.  The value of the array for a given bin is the amplitude, or "strength" of that frequencies in that bin in the signal.  The higher the amplitude, then the more those frequencies are represented in the signal.  So which frequencies are in which bucket?  That frequency is called the _resolution_ and it depends on the sample rate and the number of samples collected.
+
+```
+resolution = sample_rate / (fft size)
+```
+
+For example, at a sample rate `48000` and an FFT size of `1024`, then we will have a bin width of `46.875`.  So this means that each bucket represents a range of freqncies `46.875 Hz` wide.  So, let's say we see a large spike in bin number 12.  Then the frequency represented in that bin would be:
+
+```
+frequency = bin_number * resolution
+```
+
+In our case, that would be 562.5.
+
+
+// TODO: describe the problem with that resolution and why we need to get a smaller resolution.
+
+So, given the above information, we should be able to pass audio signal of a guitar string being plucked through an FFT to figure out the frequency, right?  Well...kinda.
 
 //show picture of FFT of a high E guitar string being plucked
 ![FFT plot of Low E string being plucked](./images/fft_low_e.png)
