@@ -15,6 +15,7 @@ arr = [0,0,0,0,0,0,0,0,0,0,0,2,3,10,19,15,3,0,7,19,40,51,50,47,49,48,53,56,35,44
 
 
 # plt.plot(freq, ft.real**2 + ft.imag**2)
-plt.plot(arr)
+print(len(arr))
+plt.plot(arr[0:1000])
 
 plt.show()
