@@ -80,12 +80,14 @@ What is a Fast Fourier Transform? According to Wikipedia:
 
 > A fast Fourier transform (FFT) is an algorithm that computes the discrete Fourier transform (DFT) of a sequence, or its inverse (IDFT). Fourier analysis converts > a signal from its original domain (often time or space) to a representation in the frequency domain and vice versa. The DFT is obtained by decomposing a sequence > of values into components of different frequencies.
 
-Ok...cool. What does that mean? Real-world audio signals are complex and contain a variety of frequency information. For our purposes, the FFT will convert the signal into an array of numbers that we can use to figure out which frequencies are the most prominent in the signal.  Let's take a look at a few pictures to make this more concrete.
+Ok...so what does that mean? Real-world audio signals are complex and contain a variety of frequency information. For our purposes, the FFT will convert the signal into an array of numbers that we can use to figure out which frequencies are the most prominent in the signal.  Let's take a look at a few pictures to make this more concrete.
 
 ![440 Hz Sine Wave](./images/440_clean_sine.png)
 ![440 Hz FFT plot](./images/440_clean_fft.png)
 
-// TODO describe the clean vs fft images above
+We see two images above; a time-domain graph of a clean 440 Hz sine wave, and a frequency-domain graph of the Fast Fourier Transform of that same wave.  Since the signal on the left is a constant 440 Hz, the FFT diagram shows a single spike at 440 Hz.
+
+// TODO
 
 Based on this (time-domain) sound wave, how can we determine the frequency of the signal.  Well, there isn't a single frequency.  By passing this signal through an FFT, however, we can see that there is a single frequency that is significantly more prominent than the rest.  This is a powerful technique that is frequently used in audio analysis.  So, we should be able to pass audio signal of a guitar string being plucked through an FFT to figure out the frequency, right?  Well...kinda.
 
