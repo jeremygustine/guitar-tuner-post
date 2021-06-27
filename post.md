@@ -15,7 +15,7 @@ Before diving into pitch detection, we need to understand some basics about the 
 
 Perhaps the most basic algorithm that can be considered for pitch detection is commonly called the "zero crossing" method.  As the name implies, this technique works by analyzing an audio signal in the time domain and counting the number of times the amplitude of the wave changes from a positive to a negative value.
 
-//TODO show picture of clean signal
+![440 Hz Sine Wave](./images/440_clean_sinepng)
 
 Here is a picture of a nice, clean sine wave. With a clean signal we can easily calculate the frequency of the signal. "The frequency of a sine wave is the number of complete cycles that happen every second".  
 
