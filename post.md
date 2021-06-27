@@ -129,6 +129,8 @@ If you see a spike in bin 55, then do:
 frequency = bin * resolution
 so, 160.2 = 55 * 2.92
 
+https://jeremygustine.github.io/js-pitch-detection-fft/
+
 Downsides:
 
 - require processing power
@@ -137,6 +139,9 @@ Downsides:
 - hard to identify particular octave
 
 ### Autocorrelation
+
+https://jeremygustine.github.io/js-pitch-detection-autocorrelation/
+
 
 ![autocorrelation](autocorrelation.gif)
 ![autocorrelation with normalization](autocorrelation_normalize.gif)
