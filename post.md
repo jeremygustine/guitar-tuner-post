@@ -85,11 +85,12 @@ Ok...so what does that mean? Real-world audio signals are complex and contain a 
 ![440 Hz Sine Wave](./images/440_clean_sine.png)
 ![440 Hz FFT plot](./images/440_clean_fft.png)
 
-We see two images above; a time-domain graph of a clean 440 Hz sine wave, and a frequency-domain graph of the Fast Fourier Transform of that same wave.  Since the signal on the left is a constant 440 Hz, the FFT diagram shows a single spike at 440 Hz.
+We see two images above; a time-domain graph of a clean 440 Hz sine wave, and a frequency-domain graph of the Fast Fourier Transform of that same wave.  Since the signal on the left is a constant 440 Hz, the FFT diagram shows a single spike at 440 Hz.  This data is very easy to interpret.  Let's take a look at a slightly more complex example.
 
-// TODO
+![FFT example](./images/fft_example.png)
+//https://learn.adafruit.com/fft-fun-with-fourier-transforms?view=all
 
-Based on this (time-domain) sound wave, how can we determine the frequency of the signal.  Well, there isn't a single frequency.  By passing this signal through an FFT, however, we can see that there is a single frequency that is significantly more prominent than the rest.  This is a powerful technique that is frequently used in audio analysis.  So, we should be able to pass audio signal of a guitar string being plucked through an FFT to figure out the frequency, right?  Well...kinda.
+Let's say that this image above shows the time-domain wave of a whistle recorded through a microphone an the Fast Fourier Transoform of that wave.  The time-domain wave is not nearly as clean as the previous example.  How can we then detect the pitch of the signal?  Well, there isn't a single frequency present in the wave.  By passing this signal through an FFT, however, we can see that there is a single frequency that is significantly more prominent than the rest.  The peak in FFT shows us what the pitch of the whistle is.  This is a powerful technique that is frequently used in audio analysis.  So, we should be able to pass audio signal of a guitar string being plucked through an FFT to figure out the frequency, right?  Well...kinda.
 
 //show picture of FFT of a high E guitar string being plucked
 ![FFT plot of Low E string being plucked](./images/fft_low_e.png)
