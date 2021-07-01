@@ -140,6 +140,11 @@ The best answer is to use a different algorithm! The FFT is simply not the best 
 
 #### Making lemonade out of lemons
 
+# TODO implement HPS? Instead of my poor-man's HPS?
+
+There are various heuristics that can be used on the imperfect data to attempt to get decent results in this scenario.  One method is to measure the distance between the most prominent spikes in the data.  This distance should be equivalent to the fundamental frequency.  This can lead to a cascading set of problems.  How does one determine what a spike is?  Must it cross a certain threshold?  How do we filter our spikes that cross the threshold 
+
+
 - reduce our problem space (we only need to detect a few notes, EADGBE)
 - distance between spikes
 - divide each spike to try and find the fundamental frequency
