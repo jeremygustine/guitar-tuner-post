@@ -111,10 +111,9 @@ In our case, that would be 562.5.
 
 So, given the above information, we should be able to pass audio signal of a guitar string being plucked through an FFT to figure out the frequency, right?  Well...kinda.
 
-//show picture of FFT of a high E guitar string being plucked
 ![FFT plot of Low E string being plucked](./images/fft_low_e.png)
 
-Well this is interesting.  When plucking a guitar's high E string, we get numerous spikes in our plot. These spikes are called harmonics (add notes about octaves as well).  
+Well this is interesting.  When plucking a guitar's low E string, we get numerous spikes in our plot. These spikes are called harmonics (or overtones).  Harmonics are spikes in frequency at multiples of the fundamental frequency.
 
 This graph shows one of the problems with using an FFT for pitch detection. When analyzing the audio of any music instrument, we will always receive a series of spikes as shown above. These various spikes are called harmonics (or overtones, or actaves) of the fundamental frequency.  The fundamental frequency is the first spike in the graph.  
 
