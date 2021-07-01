@@ -1,4 +1,5 @@
 TOC:
+- Guitar Basics
 - zero crossings
 - FFT
   - Basics
@@ -123,7 +124,7 @@ For example, if we have a sample rate `48000` and an FFT size of `1024`, then we
 
 #### The importance of resolution
 
-TODO
+In the above example, we had a resolution of `46.875`.  As we saw the frequency chart in the Guitar Basics section, the difference in frequences between the first two notes on a guitar (where the difference bewteen frequencies is the lowest) are `(F - E)`, or `87.31 Hz - 82.41 Hz = 4.9 Hz`.  The resolution of `46.875` that we achieved with a sample rate of `48000` and an FFT size of `1024` is _not even close_ to giving us enough precision to distinguish between notes.  In addition, according to this https://arxiv.org/pdf/0912.0745.pdf, a trained musician can distinguish differences as small as 0.5 Hz.  In order to decrease our resolution, we need to reduce our sampling rate and/or increase the FFT size.  This comes at the cost of additional computational complexity and more time required to fill the sample buffer, which reduces how real-time the results are.  Achieving a resolution of 0.5 Hz is incredibly non-performant, but we can get decent results with a sampling rate of 48000 and an FFT size of 16384, which gives us a resolution of 2.92.
 
 #### Applying the FFT to a guitar signal
 
