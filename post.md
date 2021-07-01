@@ -18,6 +18,8 @@ Before diving into pitch detection, we need to understand some basics about the 
 
 //TODO pitch is the frequency
 
+// TODO talk about how I don't need to distinguish between octaves (part of goal)
+
 ## Zero crossing
 
 //TODO good for getting our feet wet
@@ -134,25 +136,25 @@ So, given the above information, we should be able to pass audio signal of a gui
 
 These results are more interesting and complex than the examples given above.  When plucking a guitar's low E string, we get numerous spikes in our plot. These spikes are called harmonics (or overtones).  Harmonics are spikes in frequency at multiples of the _fundamental frequency_ (TODO define this).  Can we simply pick the largest spike in the plot and consider that the frequency?
 
-For a low E string, we are expecting to see a spike at the fundamental frequency of 82.41 Hz - and we do. The problem is that, while this is a significant spike in the data, it is not the largest spike.  This is a common problem when using pitch detection algorithms on audio signals from musical instruments.  Depending on the data, the fundamental frequency may be the first spike, or the second, and so on.  It may be the largest spike and it may not.  Given these problems, how can we reliably detect the pitch!
+For a low E string, we are expecting to see a spike at the fundamental frequency of 82.41 Hz - and we do. The problem is that, while this is a significant spike in the data, it is not the largest spike.  This is a common problem when using pitch detection algorithms on audio signals from musical instruments.  Depending on the data, the fundamental frequency may be the first spike, or the second, and so on.  It may be the largest spike and it may not.  Given these problems, how can we reliably detect the pitch?
 
-The best answer is to use a different algorithm! The FFT is simply not the best tool for the job when trying to built a pitch-detecting guitar tuner.  We can, however, reframe our problem and apply some heuristics to the data to get somewhat decent results.
+The best answer is to use a more robust pitch detection algorithm! The FFT, by itself, is simply not the best tool for the job when trying to built a pitch-detecting guitar tuner.  There are some additional techniques that can be used to extract the pitch from FFT output.
 
 #### Making lemonade out of lemons
 
-# TODO implement HPS? Instead of my poor-man's HPS?
+There are various algorithms and heuristics that can be used on the imperfect data to attempt to get decent results in this scenario.  One of the most well-known methods is called the _Harmonic Product Spectrum_, which will not be covered in this article, but is definitely worth investigating.  
 
-There are various heuristics that can be used on the imperfect data to attempt to get decent results in this scenario.  One method is to measure the distance between the most prominent spikes in the data.  This distance should be equivalent to the fundamental frequency.  This can lead to a cascading set of problems.  How does one determine what a spike is?  Must it cross a certain threshold?  How do we filter our spikes that cross the threshold 
+For my demo, I leveraged the fact that harmonics are multiples are the fundamental frequency and the fact that we do not need to distinguish between octaves. 
 
+| E | F | F# | G | G# | A | A# | B | C | C# | D | D# |
+|---|---|----|---|----|---|----|---|---|----|---|----|
+| 82.41 |	87.31	| 92.50	| 98.00	| 103.8	| 110.0	| 116.5	| 123.5 | 130.8	| 138.6	| 146.8	| 155.6 |
 
-- reduce our problem space (we only need to detect a few notes, EADGBE)
-- distance between spikes
-- divide each spike to try and find the fundamental frequency
-- FFT works pretty good for higher frequencies, but not the lower ones
+The chart above shows all of the notes on the first accessible octave on a standard-tuned guitar. This method finds the frequency of the largest spike in the data set, and then divides that number of increasingly large integers from `1..n` until the number is smaller than 164.8, which is the frequency of the next octave of E on the guitar.  Then whichever value in the chart the number of closest to will be the estimated note being played.
 
+In practice, in works _okay_ on the higher strings of the guitar, where the difference in frequency between notes is large.  The problems with the FFT's resolution and mean that a more robust algorithm is needed to produce a reliable guitar tuner.
 
-
-https://jeremygustine.github.io/js-pitch-detection-fft/
+Check it out here: https://jeremygustine.github.io/js-pitch-detection-fft/
 
 Downsides:
 
