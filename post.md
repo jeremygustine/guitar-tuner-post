@@ -128,32 +128,22 @@ In the above example, we had a resolution of `46.875`.  As we saw the frequency 
 
 #### Applying the FFT to a guitar signal
 
-So, given the above information, we should be able to pass audio signal of a guitar string being plucked through an FFT to figure out the frequency, right?  Well...kinda.
+So, given the above information, we should be able to pass audio signal of a guitar string being plucked through an FFT, and look for a spike in the data to figure out the frequency, right?  Let's take a look at an FFT plot of plucking the low E string.
 
 ![FFT plot of Low E string being plucked](./images/fft_low_e.png)
 
-Well this is interesting.  When plucking a guitar's low E string, we get numerous spikes in our plot. These spikes are called harmonics (or overtones).  Harmonics are spikes in frequency at multiples of the fundamental frequency.
+These results are more interesting and complex than the examples given above.  When plucking a guitar's low E string, we get numerous spikes in our plot. These spikes are called harmonics (or overtones).  Harmonics are spikes in frequency at multiples of the _fundamental frequency_ (TODO define this).  Can we simply pick the largest spike in the plot and consider that the frequency?
 
-This graph shows one of the problems with using an FFT for pitch detection. When analyzing the audio of any music instrument, we will always receive a series of spikes as shown above. These various spikes are called harmonics (or overtones, or actaves) of the fundamental frequency.  The fundamental frequency is the first spike in the graph.  
+For a low E string, we are expecting to see a spike at the fundamental frequency of 82.41 Hz - and we do. The problem is that, while this is a significant spike in the data, it is not the largest spike.  This is a common problem when using pitch detection algorithms on audio signals from musical instruments.  Depending on the data, the fundamental frequency may be the first spike, or the second, and so on.  It may be the largest spike and it may not.  Given these problems, how can we reliably detect the pitch!
 
-Problematically, on a guitar, the first spike may not even be the largest one.
+The best answer is to use a different algorithm! The FFT is simply not the best tool for the job when trying to built a pitch-detecting guitar tuner.  We can, however, reframe our problem and apply some heuristics to the data to get somewhat decent results.
 
-We can, luckily, look at the distance between spikes to decently estimate the fundamental frequency.
-We can also leverage the fact that these spikes are multiples of the fundamental frequency to estimate the frequency.
-This problem of the FFT may not be a huge problem if we don't care which octave we are playing, but only which note.
+#### Making lemonade out of lemons
 
-// the remaining components are overtones and are multiples of the fundamental's frequency. It is the relative mixture of fundamental and overtones that determines //timbre, or the character of an instrument
-
-Another problem with the FFT is that the resolution of the results is inversely proportional to processing power. Notes on a guitar have less frequency between them at the lower end than the higher end. This means that the resolution of the FFT results may be adequate for higher notes, but not for lower.
-
-//Talk about frequency bins
-
-Conveniently, we don't need to understand the advanced math behind the FFT to be able to use it. Besides, we have enough work on our plate figuring out how to interpret the results for our purposes.
-
-
-- There are a lot of heuristics that can be used, with varying degrees of success.  Overall, this is not the best method.
-
-
+- reduce our problem space (we only need to detect a few notes, EADGBE)
+- distance between spikes
+- divide each spike to try and find the fundamental frequency
+- FFT works pretty good for higher frequencies, but not the lower ones
 
 
 
