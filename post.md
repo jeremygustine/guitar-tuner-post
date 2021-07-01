@@ -1,3 +1,11 @@
+TOC:
+- zero crossings
+- FFT
+  - Basics
+  - How to interpret FFT results
+- Auto correlation
+
+
 I recently received some time to work on a passion project of mine.  As a guitar player (perhaps that is a generous description) and a software developer, I have always been interested in attempting to develop a guitar tuner myself.  My goal is to create a simple guitar tuner that works by analyzing a live audio signal via microphone - perfect for a laptop/desktop computer or mobile phone.  This problem touches on numerous different subjects, from music theory, to DSP (digital signal processing), to digital art (a guitar tuner needs to be able to provide visual feedback).  At the heart of any guitar tuner is some sort of pitch detection algorithm.  This post will focus on exploring 3 of those algorithms - zero-crossing, Fast Fourier Transform, and autocorrelation.
 
 ## Guitar Basics
@@ -80,7 +88,7 @@ What is a Fast Fourier Transform? According to Wikipedia:
 
 > A fast Fourier transform (FFT) is an algorithm that computes the discrete Fourier transform (DFT) of a sequence, or its inverse (IDFT). Fourier analysis converts > a signal from its original domain (often time or space) to a representation in the frequency domain and vice versa. The DFT is obtained by decomposing a sequence > of values into components of different frequencies.
 
-Ok...so what does that mean? Real-world audio signals are complex and contain a variety of frequency information. For our purposes, the FFT will convert the signal into an array of numbers that we can use to figure out which frequencies are the most prominent in the signal.  Let's take a look at a few pictures to make this more concrete.
+Ok...so what does that mean? Real-world audio signals are complex and contain a variety of frequency information. For our purposes, the FFT will convert the signal into an set of numbers that we can use to figure out which frequencies are the most prominent in the signal.  Let's take a look at a few pictures to make this more concrete.
 
 ![440 Hz Sine Wave](./images/440_clean_sine.png)
 ![440 Hz FFT plot](./images/440_clean_fft.png)
@@ -90,24 +98,34 @@ We see two images above; a time-domain graph of a clean 440 Hz sine wave, and a 
 ![FFT example](./images/fft_example.png)
 //https://learn.adafruit.com/fft-fun-with-fourier-transforms?view=all
 
-Let's say that this image above shows the time-domain wave of a whistle recorded through a microphone an the Fast Fourier Transoform of that wave.  The time-domain wave is not nearly as clean as the previous example.  How can we then detect the pitch of the signal?  Well, there isn't a single frequency present in the wave.  By passing this signal through an FFT, however, we can see that there is a particular frequency that is significantly more prominent than the rest.  The peak in FFT shows us what the pitch of the whistle is.  This is a powerful technique that is frequently used in audio analysis.  How do we interpret the data received from an FFT operation?
+Let's say that this image above shows the time-domain wave of a whistle recorded through a microphone an the Fast Fourier Transoform of that wave.  The time-domain wave is not nearly as clean as the previous example.  How can we detect the pitch of the signal?  There is not a single frequency present in the wave.  By passing this signal through an FFT, however, we can see that there is a particular frequency that is significantly more prominent than the rest.  The peak in FFT shows us what the pitch of the whistle is.  The FFT's ability to divide an audio signal into frequency components make it a powerful technique that is frequently used in audio analysis.  
 
-After passing a signal through an FFT operation, you will receive back an array of numbers.  Each index of the array is called a "bin".  You can think of each "bin" as a bucket for a range of frequencies.  The value of the array for a given bin is the amplitude, or "strength" of that frequencies in that bin in the signal.  The higher the amplitude, then the more those frequencies are represented in the signal.  So which frequencies are in which bucket?  That frequency is called the _resolution_ and it depends on the sample rate and the number of samples collected.
+#### Interpreting FFT output data
 
-```
-resolution = sample_rate / (fft size)
-```
-
-For example, at a sample rate `48000` and an FFT size of `1024`, then we will have a bin width of `46.875`.  So this means that each bucket represents a range of freqncies `46.875 Hz` wide.  So, let's say we see a large spike in bin number 12.  Then the frequency represented in that bin would be:
+After passing a signal through an FFT operation, you will receive back an array of numbers.  Each index of the array is called a _bin_.  You can think of each _bin_ as a bucket for a range of frequencies.  The number in each bin is the amplitude, or "strength" of the frequencies in that bin in the signal.  The higher the amplitude, then the more those frequencies are represented in the signal.  The size of each _bin_, and therefore the range of frequencies that each _bin_ represents, depends on the _resolution_.  
 
 ```
-frequency = bin_number * resolution
+resolution = sample_rate / fft_size
 ```
 
-In our case, that would be 562.5.
+We can see by the equation that we can increase our resolution by either reducing the `sample_rate` or increasing `fft_size`.  The `fft_size` can be thought of as a buffer that needs to be filled with sound samples.  If we desire increased resolution, we can reduce the `sample_rate`, but it will take longer to fill the buffer.  
+
+To determine which frequencies are in which bin, we can use the following equation:
+
+```
+starting_frequency = bin_number * resolution
+```
+
+The range of frequencies for a bin would then be from `starting_frequency` to `starting_frequency + resolution`.
+
+For example, if we have a sample rate `48000` and an FFT size of `1024`, then we will have a resolution of `46.875`.  This means that each _bin_ represents a range of freqncies `46.875 Hz` wide.  If we would like to determine the frequencies represented in _bin_ number 12, we can see that the `starting_frequency` will be 562.5.  This means that _bin_ 12 represents the frequencies from 562.5 to 609.375.
 
 
-// TODO: describe the problem with that resolution and why we need to get a smaller resolution.
+#### The importance of resolution
+
+TODO
+
+#### Applying the FFT to a guitar signal
 
 So, given the above information, we should be able to pass audio signal of a guitar string being plucked through an FFT to figure out the frequency, right?  Well...kinda.
 
@@ -136,23 +154,7 @@ Conveniently, we don't need to understand the advanced math behind the FFT to be
 
 
 
-How does it work?
 
-resolution depends on FFT length and sampling rate
-
-resolution = (sample rate) / (fft size)
-e.g.
-46.875 = 48000 / 1024
-The resolution is our bin width. That is WAY too big for a guitar tuner.
-
-To find the frequency, find the largest bin.
-e.g.
-Sample rate = 48000
-fft size = 16384
-resolution = bin width = 2.92
-If you see a spike in bin 55, then do:
-frequency = bin * resolution
-so, 160.2 = 55 * 2.92
 
 https://jeremygustine.github.io/js-pitch-detection-fft/
 
