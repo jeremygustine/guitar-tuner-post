@@ -183,13 +183,13 @@ When researching autocorrelation methods, the first thing you will discover is t
 
 In this equation, `l` represents the `lag`, `x` represents the sequence of data that we will be autocorrelating, and `N` is the number of data points in the sequence.
 
+// TODO here we should describe what we are doing with the lag.  Maybe link to a video?
+
 Most definitions of autocorrelation will include normalization of the data so that the maximum value of the output is scaled to 1.  This is not strictly necessary to design a guitar tuner, but we will normalize the data since this is the classic autocorrelation method, and because it makes visualizing the results easier to reason about.  Many definitions of autocorrelation will use the [_standardization_](https://www.analyticsvidhya.com/blog/2021/05/feature-scaling-techniques-in-python-a-complete-guide/) or [_min-max scaling_](https://www.analyticsvidhya.com/blog/2021/05/feature-scaling-techniques-in-python-a-complete-guide/) methods of normalization, but we will use [_maximum absolute scaling_](https://www.analyticsvidhya.com/blog/2021/05/feature-scaling-techniques-in-python-a-complete-guide/) to normalize our data, so that it is all scaled between -1 and 1.
 
 ![maximum absolute scaling](maximum_absolute_scaling.png)
 
 #### The code
-
-
 
 ```
 function rxx(l, N, x) {
@@ -216,6 +216,10 @@ function maxAbsoluteScaling(data) {
 var audioData = [...] // time domain data collected from microphone
 var result = maxAbsoluteScaling(autocorrelationWithShiftingLag(audioData))
 ```
+
+#### Building intuition
+
+// TODO put visualizations here
 
 
 ![Autocorrelation Animation](https://raw.githubusercontent.com/qingkaikong/blog/master/2017_02_intuitive_autocorrelation/figures/autocorrelation_example.gif)
