@@ -190,8 +190,13 @@ function autocorrelationWithShiftingLag(samples) {
   return autocorrelation
 }
 
-var timeDomainData = [...]
-var result = maxAbsoluteScaling(autocorrelationWithShiftingLag(timeDomainData))
+function maxAbsoluteScaling(data) {
+  var xMax = Math.abs(Math.max(...data))
+  return data.map(x => x / xMax)
+}
+
+var audioData = [...] // time domain data collected from microphone
+var result = maxAbsoluteScaling(autocorrelationWithShiftingLag(audioData))
 ```
 
 
