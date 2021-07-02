@@ -173,6 +173,10 @@ Autocorrelation helps us look for the presence of periodicity in the signal.
 ![autocorrelation](autocorrelation.gif)
 ![maximum absolute scaling](maximum_absolute_scaling.png)
 
+
+
+![Autocorrelation Animation](https://raw.githubusercontent.com/qingkaikong/blog/master/2017_02_intuitive_autocorrelation/figures/autocorrelation_example.gif)
+
 We want to compare the signal to a time-shifted version of itself.  
 
 - equation
