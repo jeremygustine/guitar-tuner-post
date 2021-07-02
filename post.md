@@ -177,10 +177,15 @@ In a nutshell, autocorrelation can be used to extract the otherwise difficult-to
 
 #### The equation
 
-![autocorrelation](autocorrelation.gif)
-![maximum absolute scaling](maximum_absolute_scaling.png)
+When researching autocorrelation methods, the first thing you will discover is that there is not a single definition.  Different disciplines (statistics, finance, digital signal processing, etc.) define the function slightly differently.  The autocorrelation can be calculated on continuous and discrete signals.  We will be using a typical DSP definition for a discrete time signal.
 
-Normalization is not strictly necessary, but it is the most common method.  We will use maximum absolute scaling, but other methods are commonly used (https://www.analyticsvidhya.com/blog/2021/05/feature-scaling-techniques-in-python-a-complete-guide/).
+![autocorrelation](autocorrelation.gif)
+
+In this equation, `l` represents the `lag`, `x` represents the sequence of data that we will be autocorrelating, and `N` is the number of data points in the sequence.
+
+Most definitions of autocorrelation will include normalization of the data so that the maximum value of the output is scaled to 1.  This is not strictly necessary to design a guitar tuner, but we will normalize the data since this is the classic autocorrelation method, and because it makes visualizing the results easier to reason about.  Typically, [_standardization_](https://www.analyticsvidhya.com/blog/2021/05/feature-scaling-techniques-in-python-a-complete-guide/) or [_min-max scaling_](https://www.analyticsvidhya.com/blog/2021/05/feature-scaling-techniques-in-python-a-complete-guide/) methods of normalization are used, but we will use [_maximum absolute scaling_](https://www.analyticsvidhya.com/blog/2021/05/feature-scaling-techniques-in-python-a-complete-guide/) to normalize our data, so that it is all scaled between -1 and 1.
+
+![maximum absolute scaling](maximum_absolute_scaling.png)
 
 #### The code
 
