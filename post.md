@@ -171,7 +171,7 @@ Autocorrelation helps us look for the presence of periodicity in the signal.
 
 
 ![autocorrelation](autocorrelation.gif)
-![autocorrelation with normalization](autocorrelation_normalize.gif)
+![maximum absolute scaling](maximum_absolute_scaling.png)
 
 We want to compare the signal to a time-shifted version of itself.  
 
