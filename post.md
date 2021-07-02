@@ -173,6 +173,26 @@ Autocorrelation helps us look for the presence of periodicity in the signal.
 ![autocorrelation](autocorrelation.gif)
 ![maximum absolute scaling](maximum_absolute_scaling.png)
 
+```
+function rxx(l, N, x) {
+  var sum = 0;
+  for (var n = 0; n <= N - l - 1; n++) {
+    sum += (x[n] * x [n + l])
+  }
+  return sum;
+}
+
+function autocorrelationWithShiftingLag(samples) {
+  var autocorrelation = []
+  for (var lag = 0; lag < samples.length; lag++) {
+    autocorrelation[lag] = rxx(lag, samples.length, samples)
+  }
+  return autocorrelation
+}
+
+var timeDomainData = [...]
+var result = maxAbsoluteScaling(autocorrelationWithShiftingLag(timeDomainData))
+```
 
 
 ![Autocorrelation Animation](https://raw.githubusercontent.com/qingkaikong/blog/master/2017_02_intuitive_autocorrelation/figures/autocorrelation_example.gif)
