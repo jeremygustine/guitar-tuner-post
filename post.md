@@ -165,9 +165,17 @@ Downsides:
 
 ### Autocorrelation
 
+What is autocorrelation? According to Wikipedia:
+
+> Autocorrelation, also known as serial correlation, is the correlation of a signal with a delayed copy of itself as a function of delay. Informally, it is the 
+> similarity between observations as a function of the time lag between them. The analysis of autocorrelation is a mathematical tool for finding repeating
+> patterns, such as the presence of a periodic signal obscured by noise, or identifying the missing fundamental frequency in a signal implied by its harmonic
+> frequencies. It is often used in signal processing for analyzing functions or series of values, such as time domain signals.
+
 https://jeremygustine.github.io/js-pitch-detection-autocorrelation/
 
 Autocorrelation helps us look for the presence of periodicity in the signal.
+Normalization is not strictly necessary, but it is the most common method.  We will use maximum absolute scaling, but other methods are commonly used (https://www.analyticsvidhya.com/blog/2021/05/feature-scaling-techniques-in-python-a-complete-guide/).
 
 
 ![autocorrelation](autocorrelation.gif)
