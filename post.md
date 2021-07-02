@@ -209,6 +209,7 @@ We want to compare the signal to a time-shifted version of itself.
 - graphs
 - can mention what cross correlation is
 - we are trying to measure the similarity between a wave and a time-shifted version of itself
+- peak detection algorithm
 
 ### Better options
 
