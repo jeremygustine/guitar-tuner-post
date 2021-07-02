@@ -163,7 +163,7 @@ Downsides:
 - hard to distinguish between harmonics
 - hard to identify particular octave
 
-### Autocorrelation
+## Autocorrelation
 
 What is autocorrelation? According to Wikipedia:
 
@@ -172,14 +172,19 @@ What is autocorrelation? According to Wikipedia:
 > patterns, such as the presence of a periodic signal obscured by noise, or identifying the missing fundamental frequency in a signal implied by its harmonic
 > frequencies. It is often used in signal processing for analyzing functions or series of values, such as time domain signals.
 
-https://jeremygustine.github.io/js-pitch-detection-autocorrelation/
+In a nutshell, autocorrelation can be used to extract the otherwise difficult-to-recognize repeating patterns within a noisy signal.  The frequency can then be detected by counting the repeating patterns.
 
-Autocorrelation helps us look for the presence of periodicity in the signal.
-Normalization is not strictly necessary, but it is the most common method.  We will use maximum absolute scaling, but other methods are commonly used (https://www.analyticsvidhya.com/blog/2021/05/feature-scaling-techniques-in-python-a-complete-guide/).
 
+#### The equation
 
 ![autocorrelation](autocorrelation.gif)
 ![maximum absolute scaling](maximum_absolute_scaling.png)
+
+Normalization is not strictly necessary, but it is the most common method.  We will use maximum absolute scaling, but other methods are commonly used (https://www.analyticsvidhya.com/blog/2021/05/feature-scaling-techniques-in-python-a-complete-guide/).
+
+#### The code
+
+
 
 ```
 function rxx(l, N, x) {
@@ -218,6 +223,8 @@ We want to compare the signal to a time-shifted version of itself.
 - can mention what cross correlation is
 - we are trying to measure the similarity between a wave and a time-shifted version of itself
 - peak detection algorithm
+
+https://jeremygustine.github.io/js-pitch-detection-autocorrelation/
 
 ### Better options
 
