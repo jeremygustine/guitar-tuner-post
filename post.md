@@ -221,3 +221,8 @@ We want to compare the signal to a time-shifted version of itself.
   
   https://ccrma.stanford.edu/~pdelac/154/m154paper.htm
   continuous vs discrete https://www.allaboutcircuits.com/technical-articles/understanding-correlation/
+  
+  
+  Good videos:
+  https://www.youtube.com/watch?v=ErtPBvEnQZc&t=724s
+  https://www.youtube.com/watch?v=CZetNvqQx_w&t=209s
