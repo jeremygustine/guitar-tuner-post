@@ -184,8 +184,6 @@ When researching autocorrelation methods, the first thing you will discover is t
 
 In this equation, `l` represents the `lag`, `x` represents the sequence of data that we will be autocorrelating, and `N` is the number of data points in the sequence.  The idea here is that we will call this function repeatedly for an increasing value of `l`, where the value will increase from `0` to `N`.  
 
-// TODO here we should describe what we are doing with the lag.  Maybe link to a video?
-
 Most definitions of autocorrelation will include normalization of the data so that the maximum value of the output is scaled to 1.  This is not strictly necessary to design a guitar tuner, but we will normalize the data since this is the classic autocorrelation method, and because it makes visualizing the results easier to reason about.  Many definitions of autocorrelation will use the [_standardization_](https://www.analyticsvidhya.com/blog/2021/05/feature-scaling-techniques-in-python-a-complete-guide/) or [_min-max scaling_](https://www.analyticsvidhya.com/blog/2021/05/feature-scaling-techniques-in-python-a-complete-guide/) methods of normalization, but we will use [_maximum absolute scaling_](https://www.analyticsvidhya.com/blog/2021/05/feature-scaling-techniques-in-python-a-complete-guide/) to normalize our data, so that it is all scaled between -1 and 1.
 
 ![maximum absolute scaling](maximum_absolute_scaling.png)
@@ -226,8 +224,6 @@ var result = maxAbsoluteScaling(autocorrelationWithShiftingLag(audioData))
 The animation above shows how the autocorrelation method works.  The blue signal is the original signal.  The red one is the time shifted version, where we are continuously increasing the lag for each invocation of the autocorrelation function.  The image on the bottom shows the result of the autocorrelation.  Notice that at a time-lag of 0, the result of the autocorrelation is `1`.  This is because a the signal compared with itself is identical - it is perfectly correlated.  As we continue to time-shift the red signal, the correlation function will output larger numbers when the signals are very similar and smaller numbers when they are not.  The peaks of the autocorrelation output represent the _periods_ of the signal.  By counting the time between each peak, we can determine the frequency of the signal.  The example above shows the comparison of a clean sine wave with itself.  This method is especially useful for noisier signals with harder to recognize periodicity patterns.  [This fantastic video](https://www.youtube.com/watch?v=ErtPBvEnQZc&t=724s) by David Dorran does a great job at visualizing how this method works with more complex signals.
 
 After building the autocorrelation result, a simple peak detection algorithm (very similar to the zero-crossing method described above) can be used to extract the frequency from the data.
-
-//TODO should I show how that peak detection code works?
 
 
 https://jeremygustine.github.io/js-pitch-detection-autocorrelation/
