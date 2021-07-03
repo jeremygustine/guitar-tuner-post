@@ -225,7 +225,7 @@ var result = maxAbsoluteScaling(autocorrelationWithShiftingLag(audioData))
 
 The animation above shows how the autocorrelation method works.  The blue signal is the original signal.  The red one is the time shifted version, where we are continuously increasing the lag for each invocation of the autocorrelation function.  The image on the bottom shows the result of the autocorrelation.  Notice that at a time-lag of 0, the result of the autocorrelation is `1`.  This is because a the signal compared with itself is identical - it is perfectly correlated.  As we continue to time-shift the red signal, the correlation function will output larger numbers when the signals are very similar and smaller numbers when they are not.  The peaks of the autocorrelation output represent the _periods_ of the signal.  By counting the time between each peak, we can determine the frequency of the signal.  The example above shows the comparison of a clean sine wave with itself.  This method is especially useful for noisier signals with harder to recognize periodicity patterns.  [This fantastic video](https://www.youtube.com/watch?v=ErtPBvEnQZc&t=724s) by David Dorran does a great job at visualizing how this method works with more complex signals.
 
-After building the autocorrelation result, a simple peak detection algorithm can be used to extract the frequency from the data.
+After building the autocorrelation result, a simple peak detection algorithm (very similar to the zero-crossing method described above) can be used to extract the frequency from the data.
 
 //TODO should I show how that peak detection code works?
 
