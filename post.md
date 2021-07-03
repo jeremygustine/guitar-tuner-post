@@ -174,6 +174,7 @@ What is autocorrelation? According to Wikipedia:
 
 In a nutshell, autocorrelation can be used to extract the otherwise difficult-to-recognize repeating patterns within a noisy signal.  The frequency can then be detected by counting the repeating patterns.
 
+Autocorrelation is a special case of cross-correlation.  "Cross-correlation is a measurement that tracks the movements of two or more sets of time series data relative to one another." (https://www.investopedia.com/terms/c/crosscorrelation.asp).  In DSP, cross-correlation can be used to compare two signals to each other to determine how similar - or _correlated_ - they are. Autocorrelation is similar, except that we are going to a signal to a time-shifted version of the same signal.  
 
 #### The equation
 
@@ -181,7 +182,7 @@ When researching autocorrelation methods, the first thing you will discover is t
 
 ![autocorrelation](autocorrelation.gif)
 
-In this equation, `l` represents the `lag`, `x` represents the sequence of data that we will be autocorrelating, and `N` is the number of data points in the sequence.
+In this equation, `l` represents the `lag`, `x` represents the sequence of data that we will be autocorrelating, and `N` is the number of data points in the sequence.  The big idea here is that we will call this function repeatedly for an increasing value of `l`, where the value will increase from `0` to `N`.  
 
 // TODO here we should describe what we are doing with the lag.  Maybe link to a video?
 
