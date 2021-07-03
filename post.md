@@ -172,9 +172,9 @@ What is autocorrelation? According to Wikipedia:
 > patterns, such as the presence of a periodic signal obscured by noise, or identifying the missing fundamental frequency in a signal implied by its harmonic
 > frequencies. It is often used in signal processing for analyzing functions or series of values, such as time domain signals.
 
-In a nutshell, autocorrelation can be used to extract the otherwise difficult-to-recognize repeating patterns within a noisy signal.  The frequency can then be detected by counting the repeating patterns.
+In a nutshell, autocorrelation can be used to extract the otherwise difficult-to-recognize repeating patterns within a noisy signal.  We can then determine the frequency by counting the repeating patterns.
 
-Autocorrelation is a special case of cross-correlation.  "Cross-correlation is a measurement that tracks the movements of two or more sets of time series data relative to one another." (https://www.investopedia.com/terms/c/crosscorrelation.asp).  In DSP, cross-correlation can be used to compare two signals to each other to determine how similar - or _correlated_ - they are. Autocorrelation is similar, except that we are going to compare a signal to a time-shifted version of the same signal.  
+Autocorrelation is a special case of cross-correlation.  _"Cross-correlation is a measurement that tracks the movements of two or more sets of time series data relative to one another."_ (https://www.investopedia.com/terms/c/crosscorrelation.asp).  In DSP, cross-correlation can be used to compare two signals to each other to determine how similar - or _correlated_ - they are. Autocorrelation is similar, except that we are going to compare a signal to a time-shifted version of the same signal.  
 
 #### The equation
 
