@@ -144,13 +144,13 @@ The best answer is to use a more robust pitch detection algorithm! The FFT, by i
 
 There are various algorithms and heuristics that can be used on the imperfect data to attempt to get decent results in this scenario.  One of the most well-known methods is called the _Harmonic Product Spectrum_, which will not be covered in this article, but is definitely worth investigating.  
 
-For my demo, I leveraged the fact that harmonics are multiples are the fundamental frequency and the fact that we do not need to distinguish between octaves. 
+For my demo, I leveraged the fact that harmonics are multiples are the fundamental frequency and the fact that we do not need to distinguish between octaves.  
 
 | E | F | F# | G | G# | A | A# | B | C | C# | D | D# |
 |---|---|----|---|----|---|----|---|---|----|---|----|
 | 82.41 |	87.31	| 92.50	| 98.00	| 103.8	| 110.0	| 116.5	| 123.5 | 130.8	| 138.6	| 146.8	| 155.6 |
 
-The chart above shows all of the notes on the first accessible octave on a standard-tuned guitar. This method finds the frequency of the largest spike in the data set, and then divides that number of increasingly large integers from `1..n` until the number is smaller than 164.8, which is the frequency of the next octave of E on the guitar.  Then whichever value in the chart the number of closest to will be the estimated note being played.
+The chart above shows all of the notes on the first accessible octave on a standard-tuned guitar. This method finds the frequency of the largest spike in the data set, and then divides that number of increasingly large integers from `1..n` until the number is smaller than 164.8, which is the frequency of the next octave of E on the guitar.  Then whichever value in the chart the number of closest to will be the estimated note being played.  We can call this method the _Lazy man's HPS_. 
 
 In practice, in works _okay_ on the higher strings of the guitar, where the difference in frequency between notes is large.  The problems with the FFT's resolution and mean that a more robust algorithm is needed to produce a reliable guitar tuner.
 
@@ -182,7 +182,7 @@ When researching autocorrelation methods, the first thing you will discover is t
 
 ![autocorrelation](autocorrelation.gif)
 
-In this equation, `l` represents the `lag`, `x` represents the sequence of data that we will be autocorrelating, and `N` is the number of data points in the sequence.  The big idea here is that we will call this function repeatedly for an increasing value of `l`, where the value will increase from `0` to `N`.  
+In this equation, `l` represents the `lag`, `x` represents the sequence of data that we will be autocorrelating, and `N` is the number of data points in the sequence.  The idea here is that we will call this function repeatedly for an increasing value of `l`, where the value will increase from `0` to `N`.  
 
 // TODO here we should describe what we are doing with the lag.  Maybe link to a video?
 
@@ -220,19 +220,15 @@ var result = maxAbsoluteScaling(autocorrelationWithShiftingLag(audioData))
 
 #### Building intuition
 
-// TODO put visualizations here
-
 
 ![Autocorrelation Animation](https://raw.githubusercontent.com/qingkaikong/blog/master/2017_02_intuitive_autocorrelation/figures/autocorrelation_example.gif)
 
-We want to compare the signal to a time-shifted version of itself.  
+The animation above shows how the autocorrelation method works.  The blue signal is the original signal.  The red one is the time shifted version, where we are continuously increasing the lag for each invocation of the autocorrelation function.  The image on the bottom shows the result of the autocorrelation.  Notice that at a time-lag of 0, the result of the autocorrelation is `1`.  This is because a the signal compared with itself is identical - it is perfectly correlated.  As we continue to time-shift the red signal, the correlation function will output larger numbers when the signals are very similar and smaller numbers when they are not.  The peaks of the autocorrelation output represent the _periods_ of the signal.  By counting the time between each peak, we can determine the frequency of the signal.  The example above shows the comparison of a clean sine wave with itself.  This method is especially useful for noisier signals with harder to recognize periodicity patterns.  [This fantastic video](https://www.youtube.com/watch?v=ErtPBvEnQZc&t=724s) by David Dorran does a great job at visualizing how this method works with more complex signals.
 
-- equation
-- code
-- graphs
-- can mention what cross correlation is
-- we are trying to measure the similarity between a wave and a time-shifted version of itself
-- peak detection algorithm
+After building the autocorrelation result, a simple peak detection algorithm can be used to extract the frequency from the data.
+
+//TODO should I show how that peak detection code works?
+
 
 https://jeremygustine.github.io/js-pitch-detection-autocorrelation/
 
