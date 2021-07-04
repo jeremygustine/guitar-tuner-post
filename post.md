@@ -13,6 +13,20 @@ I recently received some time to work on a passion project of mine.  As a guitar
 
 Before diving into pitch detection, we need to understand some basics about the guitar.
 
+We will only be concerned with a six-string, standard-tuned guitar.  The notes of the six strings, from low pitch to high, are E, A, D, G, B, and E.
+
+Here is a chart with the frequencies of every note on a standard-turned guitar (assuming it has 22 frets):
+
+| |C|C#|D|Eb|E|F|F#|G|G#|A|Bb|B|
+|---|---|----|---|----|---|----|---|---|----|---|----|--|
+|2|||||82.41|87.31|92.50|98.00|103.8|110.0|116.5|123.5|
+|3|130.8|138.6|146.8|155.6|164.8|174.6|185.0|196.0|207.7|220.0|233.1|246.9|
+|4|261.6|277.2|293.7|311.1|329.6|349.2|370.0|392.0|415.3|440.0|466.2|493.9|
+|5|523.3|554.4|587.3|622.3|659.3|698.5|740.0|784.0|830.6|880.0|932.3|987.8|
+|6|1047|1109|1175||||||||||
+
+
+
 // TODO: talk about frequencies of six strings, standard tuning, no non-standard tuning - maybe even harmonics? maybe clean vs dirty signals?
 // TODO: talk about sine waves? frequency vs amplitude, etc? time domain vs frequency domain?
 
@@ -24,13 +38,9 @@ Before diving into pitch detection, we need to understand some basics about the 
 - harmonics
 - octaves
 
-| |C|C#|D|Eb|E|F|F#|G|G#|A|Bb|B|
-|---|---|----|---|----|---|----|---|---|----|---|----|--|
-|2|||||82.41|87.31|92.50|98.00|103.8|110.0|116.5|123.5|
-|3|130.8|138.6|146.8|155.6|164.8|174.6|185.0|196.0|207.7|220.0|233.1|246.9|
-|4|261.6|277.2|293.7|311.1|329.6|349.2|370.0|392.0|415.3|440.0|466.2|493.9|
-|5|523.3|554.4|587.3|622.3|659.3|698.5|740.0|784.0|830.6|880.0|932.3|987.8|
-|6|1047|1109|1175||||||||||
+
+
+
 
 
 
