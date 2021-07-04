@@ -245,18 +245,13 @@ After building the autocorrelation result, a simple peak detection algorithm (ve
 
 https://jeremygustine.github.io/js-pitch-detection-autocorrelation/
 
-### Better options
+### Summary
 
-- combination of the above
-- That one Greek algorithm
-  Still need visual feedback - will investigate canvas element later
-  
-  
-  
-  https://ccrma.stanford.edu/~pdelac/154/m154paper.htm
-  continuous vs discrete https://www.allaboutcircuits.com/technical-articles/understanding-correlation/
-  
-  
-  Good videos:
-  https://www.youtube.com/watch?v=ErtPBvEnQZc&t=724s
-  https://www.youtube.com/watch?v=CZetNvqQx_w&t=209s
+The three pitch detection methods described have their strengths and weaknesses and are best for particular use-cases.  The zero-crossing method is computationally inexpensive and easy to understand, but does not work well with noisy signals.  The Fast Fourier Transform has the advantage of being a well known method of analyzing signals in the frequency domain.  It can work well for detecting signals at higher frequencies, however, it is difficult to achieve the resolution required to detect the small differences in frequency required for a reliable guitar tuner.  The autocorrelation algorithm is the most reliable of the three for the purposes of a guitar tuner, but, like the FFT, it is vulnerable to harmonic interference.  
+
+While each of these methods have enough drawbacks to make it difficult to design a robust guitar tuner by themselves, they form the basis for many more advanced algorithms.  For example, a FFT combined with a Harmonic Product Spectrum can help minimize overtone problems.  With autocorrelation, peak detection can be improved with [parabolic interpolation](https://ccrma.stanford.edu/~jos/parshl/Peak_Detection_Steps_3.html).  The [YIN](http://mroy.chez-alice.fr/yin/index.html) algorithm is a popular pitch detection method for which the autocorrelation function is a step in the process.
+
+
+
+
+
