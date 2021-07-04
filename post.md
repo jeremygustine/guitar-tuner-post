@@ -11,9 +11,7 @@ I recently received some time to work on a passion project of mine.  As a guitar
 
 ## Guitar Basics
 
-Before diving into pitch detection, we need to understand some basics about the guitar.
-
-We will only be concerned with a six-string, standard-tuned guitar.  The notes of the six strings, from low pitch to high, are E, A, D, G, B, and E.
+Before diving into pitch detection, we need to understand some basics about the guitar.  We will only be concerned with a six-string, standard-tuned guitar.  The notes of the six strings, from low pitch to high, are E, A, D, G, B, and E.
 
 Here is a chart with the frequencies of every note on a standard-turned guitar (assuming it has 22 frets):
 
@@ -25,23 +23,17 @@ Here is a chart with the frequencies of every note on a standard-turned guitar (
 |5|523.3|554.4|587.3|622.3|659.3|698.5|740.0|784.0|830.6|880.0|932.3|987.8|
 |6|1047|1109|1175||||||||||
 
+The number in the left-most column are _octaves_.  The western musical system has 12 notes, which are along the top row.  The 12 notes continuously repeat across octaves.  The first note on the first string of standard-tuned guitar is E2, while the sixth string has a note of E4.  
 
+There are a few interesting things to observe in the chart above.  The first is that the difference in frequency between notes gradually increases as the pitch of notes gets higher.  The second is that the frequency of each octave is double the frequency of the previous octave.  For example, E3 has a frequency of 164.8, which is double E2's frequency of 82.41.
 
-// TODO: talk about frequencies of six strings, standard tuning, no non-standard tuning - maybe even harmonics? maybe clean vs dirty signals?
-// TODO: talk about sine waves? frequency vs amplitude, etc? time domain vs frequency domain?
+There are a couple of other concepts we should define that will help us as we look at these algorithms.
 
-//TODO pitch is the frequency
+- Fundamental frequency: "The lowest frequency of any vibrating object is called the fundamental frequency. The fundamental frequency provides the sound with its strongest audible pitch reference - it is the predominant frequency in any complex waveform" (teachmeaudio.com)[https://www.teachmeaudio.com/recording/sound-reproduction/fundamental-harmonic-frequencies].
+- Harmonic: A harmonic is an integer multiple of the fundamental frequency. A vibrating guitar string will produce the fundamental frequencies as well as numerous harmonics (double the fundamental frequency, triple the fundamental frequency, etc).
 
-// TODO talk about how I don't need to distinguish between octaves (part of goal)
-
-- fundamental frequency
-- harmonics
-- octaves
-
-
-
-
-
+Goals/Limitations (better work for this):
+We are not interested in distinguishing between various octaves.  It will be sufficient for us to identify an E note, for an example, rather than knowing if a note is E2 or E3.
 
 
 ## Zero crossing
