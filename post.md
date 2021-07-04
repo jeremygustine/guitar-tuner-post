@@ -33,7 +33,8 @@ There are a couple of other concepts we should define that will help us as we lo
 - Harmonic: A harmonic is an integer multiple of the fundamental frequency. A vibrating guitar string will produce the fundamental frequencies as well as numerous harmonics (double the fundamental frequency, triple the fundamental frequency, etc).
 
 Goals/Limitations (better work for this):
-We are not interested in distinguishing between various octaves.  It will be sufficient for us to identify an E note, for an example, rather than knowing if a note is E2 or E3.
+- We are not interested in distinguishing between various octaves.  It will be sufficient for us to identify an E note, for an example, rather than knowing if a note is E2 or E3.
+- We want to build a real-time guitar tuner that picks up sound through a microphone.
 
 
 ## Zero crossing
