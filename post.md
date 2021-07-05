@@ -171,7 +171,8 @@ The chart above shows all of the notes on the first accessible octave on a stand
 
 In practice, in works _okay_ on the higher strings of the guitar, where the difference in frequency between notes is large.  The problems with the FFT's resolution and mean that a more robust algorithm is needed to produce a reliable guitar tuner.
 
-Check it out here: https://jeremygustine.github.io/js-pitch-detection-fft/
+Check out a demo of FFT-based pitch detection here: https://jeremygustine.github.io/js-pitch-detection-fft/
+_Visualizations based on some awesome work by [George Gally](https://hackernoon.com/creative-coding-using-the-microphone-to-make-sound-reactive-art-part1-164fd3d972f3)_
 
 Downsides:
 
@@ -243,7 +244,8 @@ The animation above shows how the autocorrelation method works.  The blue signal
 After building the autocorrelation result, a simple peak detection algorithm (very similar to the zero-crossing method described above) can be used to extract the frequency from the data.
 
 
-https://jeremygustine.github.io/js-pitch-detection-autocorrelation/
+Check out a demo of autocorrelation-based pitch detection here: https://jeremygustine.github.io/js-pitch-detection-autocorrelation/
+_Visualization built with p5.js, based on some awesome work by Jason Sigal and Golan Levin._
 
 ### Summary
 
